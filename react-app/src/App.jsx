@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+import "./App.css"
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+export default class App extends React.Component{
+  render(){
+    return(
+      <div className="page-container">
+        
+        <nav id="navbar" title="Toggle menu width">
+          <div className="menu-item" tabIndex="0" data-content="products">
+            <span className="menu-icon">📦</span>
+            <span className="menu-text">Products</span>
+          </div>
+          <div className="menu-item" tabIndex="0" data-content="prices">
+            <span className="menu-icon">💰</span>
+            <span className="menu-text">Prices</span>
+          </div>
+          <div className="menu-item" tabIndex="0" data-content="about">
+            <span className="menu-icon">ℹ️</span>
+            <span className="menu-text">About</span>
+          </div>
+        </nav>
+
+        <main id="content-area">
+          {/* Default content is Products/Prices table */}
+
+          <h1>My mueslis</h1>
+
+          <table>
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Classic Muesli</td><td>$4.65</td></tr>
+              <tr><td>2</td><td>Berry Lovers</td><td>$3.02</td></tr>
+              <tr><td>3</td><td>Nuts & Honey</td><td>$4.12</td></tr>
+              <tr><td>4</td><td>Tropical Mix</td><td>$4.93</td></tr>
+              <tr><td>5</td><td>Choco Delight</td><td>$2.73</td></tr>
+              <tr><td>6</td><td>Organic Oats</td><td>$3.55</td></tr>
+              <tr><td>7</td><td>Apple Cinnamon</td><td>$5.42</td></tr>
+              <tr><td>8</td><td>Fruit & Nut</td><td>$5.60</td></tr>
+            </tbody>
+          </table>
+        </main>
+
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    )
+  }
 }
-
-export default App

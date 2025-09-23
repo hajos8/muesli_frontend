@@ -4,7 +4,9 @@ import "./App.css"
 
 export default class App extends React.Component{
   state = {
-    muesliData: null
+    muesliData: {
+      result: []
+    }
   }
 
   render(){
@@ -41,7 +43,13 @@ export default class App extends React.Component{
             </thead>
             <tbody>
               {/*<tr><td>1</td><td>Classic Muesli</td><td>$4.65</td></tr>*/}
-
+              {this.state.muesliData.result.map(muesli =>(
+                <tr key={muesli.id}>
+                  <td>{muesli.id}</td>
+                  <td>{muesli.name}</td>
+                  <td>{muesli.price}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </main>
@@ -56,7 +64,7 @@ export default class App extends React.Component{
       //console.log(muesliData)
       muesliData = await muesliData.json()
 
-      this.setState(muesliData)
+      this.setState({muesliData})
     }
     catch(e){
       console.warn(e)

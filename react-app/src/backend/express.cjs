@@ -42,14 +42,31 @@ app.post('/mueslis', (req,res)=>{
 
     conn.query("INSERT INTO mueslis (name, price) VALUES (?, ?)", [name, price], (err,results,fields)=>{
         if(err) {
-            console.warn(err)
+            //console.warn(err)
             res.sendStatus(500)
-        } else {
-            console.log('insertId', results.insertId)
+        } 
+        else {
+            //console.log('insertId', results.insertId)
             res.status(201).json({id: results.insertId, name, price})
         }
     })
-    res.sendStatus(201)
+})
+
+app.patch('/mueslis', (req,res)=>{
+    const {id} = req.body
+    const newName = req.body.name ? req.body.name : null
+    const newPrice = req.body.price ? req.body.price : NaN
+
+    if(!id) res.sendStatus(300)
+    if(newPrice && newPrice < 1) res.sendStatus(300)
+    
+    conn.connect(err => console.warn(err))
+
+    conn.query("UPDATE mueslis SET name = ?, price = ? WHERE id = ?", [newName, newPrice, id], (err,results,fields)=>{
+        console.log('results', results)
+        res.status(200).json({id, name: newName, price: newPrice})
+    })
+
 })
 
 app.get((err,req,res)=>{

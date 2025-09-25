@@ -21,6 +21,7 @@ export default class App extends React.Component{
         <LeftSideBar onMenuItemSelected={this.handleSelectMenuItem}/>
 
         {this.state.menuItemSelected == 'products' && <MuesliPage/>}
+        {this.state.menuItemSelected == 'prices' && <MuesliPage/>}
         {this.state.menuItemSelected == 'about' && <AboutPage/>}
 
       </div>

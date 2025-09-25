@@ -62,10 +62,10 @@ nav.expanded .menu-text {
 main {
   flex-grow: 1;
   background-color: var(--content-bg);
-  overflow-x: auto;
+  /*overflow-x: auto;*/
   padding: 20px;
-  display: flex;
-  flex-direction: column;
+  display: block;
+  width: 100%;
 }
 main h1 {
   margin: 0 0 1rem 0;
@@ -73,6 +73,16 @@ main h1 {
   font-size: 2rem;
   white-space: nowrap;
 }
+.tableWrapper{
+  width: 100%;
+  display: block;
+
+  overflow-x: auto;
+  overflow-y: auto;
+
+  max-height: ;
+}
+
 table {
   border-collapse: collapse;
   width: 100%;

@@ -8,8 +8,9 @@ export default class LeftSideBar extends Component{
 
     handleNavMouse = e =>this.setState({menuExpanded: !this.state.menuExpanded})
 
-    handleProductMenuClick = e => this.props.onMenuItemSelected({menuItemSelected: 'products'})
-    handleAboutMenuClick = e => this.props({menuItemSelected: 'about'})
+    handleProductMenuClick = e => this.props.onMenuItemSelected('products')
+    handlePricesMenuClick = e => this.props.onMenuItemSelected('prices')
+    handleAboutMenuClick = e => this.props.onMenuItemSelected('about')
 
     render(){
         return(
@@ -18,7 +19,7 @@ export default class LeftSideBar extends Component{
                 <span className="menu-icon">📦</span>
                 <span className="menu-text">Products</span>
             </div>
-            <div className="menu-item" tabIndex="0" data-content="prices">
+            <div className="menu-item" tabIndex="0" data-content="prices" onClick={this.handlePricesMenuClick}>
                 <span className="menu-icon">💰</span>
                 <span className="menu-text">Prices</span>
             </div>

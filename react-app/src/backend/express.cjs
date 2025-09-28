@@ -57,14 +57,34 @@ app.patch('/mueslis', (req,res)=>{
     const newName = req.body.name ? req.body.name : null
     const newPrice = req.body.price ? req.body.price : NaN
 
-    if(!id) res.sendStatus(300)
-    if(newPrice && newPrice < 1) res.sendStatus(300)
-    
+    const updates = []
+    const values = []
+
+    if(newName){
+        updates.push("name = ?")
+        values.push(newName)
+    }
+    if(newPrice && newPrice > 0){
+        updates.push("price = ?")
+        values.push(newPrice)
+    }
+
+    if(updates.length === 0) res.sendStatus(300)
+
+    let queryStr = "UPDATE mueslis SET "
+
+    queryStr += updates.join(", ") + " WHERE id = ?"
+
     conn.connect(err => console.warn(err))
 
-    conn.query("UPDATE mueslis SET name = ?, price = ? WHERE id = ?", [newName, newPrice, id], (err,results,fields)=>{
-        console.log('results', results)
-        res.status(200).json({id, name: newName, price: newPrice})
+    conn.query(queryStr, [...values, id], (err,results,fields)=>{
+        if(err) {
+            //console.warn(err)
+            res.sendStatus(500)
+        }
+        else {
+            res.status(200).json({id, name: newName, price: newPrice})
+        }
     })
 
 })

@@ -89,6 +89,22 @@ app.patch('/mueslis', (req,res)=>{
 
 })
 
+app.delete('/mueslis/:id', (req,res)=>{
+    const {id} = req.params
+
+    conn.connect(err => console.warn(err))
+
+    conn.query("DELETE FROM mueslis WHERE id = ?", [id], (err,results,fields)=>{
+        if(err) {
+            //console.warn(err)
+            res.sendStatus(500)
+        }
+        else {
+            res.status(204).send()
+        }
+    })
+})
+
 app.get((err,req,res)=>{
     if(err){
         res.status(404).send("<h1 style='color: red'>404 not found</h1>")

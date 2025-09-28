@@ -80,7 +80,7 @@ main h1 {
   overflow-x: auto;
   overflow-y: auto;
 
-  max-height: ;
+  max-height: 100%;
 }
 
 table {
